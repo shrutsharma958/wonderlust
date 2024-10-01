@@ -1,0 +1,95 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.nevbar{
+    height: 1.5rem;
+    background-color: white !important;
+}
+.fa-compass{
+    color: #fe424d;
+    font-size: 2rem;
+}
+.nav-link{
+    color: #222222 !important
+}
+.f-info-terms a{
+    text-decoration: none;
+    color: #222222;
+
+}
+.f-info-socials{
+width: 100%;
+font-size: 1.2rem;
+}
+.f-info-terms{
+    width: 100%;
+}
+.f-info{
+    display:flex;
+    height: 8rem;
+    background-color: #ebebeb;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+
+}
+.listing-card{
+    border:none !important;
+    margin-bottom: 2rem !important;
+}
+.card-body-review{
+    padding: 10px;
+    margin: 15px;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+.card-body{
+    padding: 0 !important;
+}
+.card-text p{
+    font-weight: 400 !important;
+}
+.card-a{
+    text-decoration: none;
+}
+.new-btn{
+    background-color: #fe424d !important;
+    border:none !important;
+    border-radius: 5px !important;
+    color: #ebebeb !important;
+}
+.show-img{
+    height: 30vh !important;
+}
+.card-text {
+    margin: 0px !important;
+}
+.post-it{
+    background-color: #ebebeb !important;
+    color: black !important;
+}
+.dlt-btn{
+    background-color: black !important;
+}
+.listing-btns{
+    display: flex;
+    flex-wrap: wrap;
+}
+.read-form{
+    display: inline !important;
+    margin-right: 1rem;
+
+}
+.starability-slot{
+    width: auto !important;
+}
+#map {
+    height: 400px;
+    width: 100vh;
+
+}

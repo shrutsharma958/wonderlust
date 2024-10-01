@@ -1,0 +1,123 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<div class="row">
+    <div class="col-8 offset-1">
+<body>
+    
+    <h1><%= list.title %></h1>
+</div>
+<div>
+    <div class="listing-card col-8 offset-2 ">
+        <img src="<%= list.image.url %>" class="card-img-top show-img" alt="...">
+        <div class="card-body col-12">
+           <p class="card-text">Owned by <i><%= list.owner.username %></i></p><br>
+          <p class="card-text"><b><%= list.description %></p></b>
+          <hr>
+          <p class="card-text">  &#8377;<%= list.price %></p>
+          <p class="card-text"><%= list.location %></p>
+          <p class="card-text"><%= list.country %></p>
+        </div>
+        <br>
+        <div class=" listing-btns">
+            <% if(currUser && currUser._id.equals(list.owner._id)){ %>
+           
+        
+                <form action="/listing/<%= list._id %>/edit" class="read-form "><button class="btn btn-dark new-btn read-form ">Edit </button> </form>
+                <form action="/listing/<%=  list._id   %>?_method=DELETE" method="post"><button class="btn btn-dark new-btn dlt-btn">Delete  </button> </form>
+ <% } %>
+       <div class="col ">
+        
+    </div>
+    </div>
+<hr>
+<div>
+    <% if(currUser){ %>
+    <H3>Reviews : </H3>
+    <form action="/listing/<%=  list._id %>/review" method="post" novalidate class="needs-validation">
+
+
+        <div class="mt-2 mb-2">
+            <label for="comment" class="form-label"><b>Comments</b></label>
+            <textarea  id="comment" class="form-control need-validation" name="review[comment]" required></textarea>
+            <div class="invalid-feedback">
+                Enter a comment !
+              </div>
+
+
+        </div>
+
+
+        <label for="rating" class="form-label mt-2"><b>Rating</b></label>
+        <div  class=" mb-2 form-label">
+           
+    
+
+            <fieldset class="starability-slot">
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="0" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+              </fieldset>
+        </div>
+
+
+        <br>
+        <button class="btn btn-dark post-it ">Post it</button>
+    </form>
+    <hr>
+    <% } %>
+</div>
+<% if(list.reviews.length>0){ %>
+
+    <p><b>All Reviews:</b></p>
+    <div class="row">
+  
+    <% for(review of list.reviews){ %>
+    <div class="col-5 ms-1 mb-3 mt-1">
+        <div class="review-card card">
+            <div class="card-body card-body-review">
+                <h5 class="card-title">@<%= review.author.username %></h5>
+                <p class="starability-result " data-rating=<%= review.rating  %>> </p>
+                <p class="card-text"><%= review.comment %></p>
+                
+            </div>
+            <div class="mb-2 ms-2">
+               
+            <form action="/listing/<%= list._id %>/review/<%= review._id %>?_method=DELETE" method="post"><button class="btn btn-dark btn-sm">Delete</button></form>
+            
+        </div>
+        </div>
+    </div>
+   
+    <% } %>
+</div>
+<hr>
+<% } %>
+   <div>
+<h3 class>Where you'll be</h3>
+<br>
+
+<div id="map"></div>
+</div>
+<script>
+    let mapToken="<%= process.env.MAP_TOKEN %>";
+   mapboxgl.accessToken = mapToken;
+  console.log(mapToken)
+   const map = new mapboxgl.Map({
+      container: 'map', // container ID
+       center: [77.7064,28.9845], // starting position [lng, lat]. Note that lat must be set between -90 and 90
+      style:"mapbox://styles/mapbox/streets-v12",
+       zoom: 9, // starting zoom
+   });
+</script>
+
+</div>
+</div>
+</div>
+</div>
